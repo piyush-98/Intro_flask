@@ -32,15 +32,15 @@ def hello_python():
 def success(name):
    return 'welcome %s' % name
 
-@app.route('/login',methods = ['POST', 'GET'])
-def login():
+@app.route('/login',methods = ['POST', 'GET']) ## Two methods for giving data to the server
+def login(): ## login.html mapped by login()
    if request.method == 'POST':
-      user = request.form['nm']
+      user = request.form['nm'] ## for post method the value of the parameter is obtained by this.
       return redirect(url_for('success',name = user))
    else:
-      user = request.args.get('nm')
-      return redirect(url_for('success',name = user))
+      user = request.args.get('nm') ## here args is a dict{} containing keys as the parameters.
+      return redirect(url_for('success',name = user)) ## redirecting the page to success
 
-
+## Run the html file to see the login page.
 if __name__ == '__main__':
    app.run(debug = True)## run() helps to run the application and the debug mode relaods the changes automatically the reloading the website,
