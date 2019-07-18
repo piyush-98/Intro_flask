@@ -2,7 +2,7 @@
 ##For instance, in the following script, hello() function will render ‘Hello World’ with <h1> tag attached to it.
 
 from flask import Flask
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 app=Flask(__name__)
 @app.route('/')
 def index():
@@ -15,10 +15,23 @@ def index():
 def hello_name(user):
    return render_template('hello.html', name = user) ## This Renders the html page with name as the placeholder
 
-@app.route('/result')
-def result():
+@app.route('/marks')
+def marks():
    dict = {'phy':50,'che':60,'maths':70}
    return render_template('hello.html', result = dict)
+
+@app.route('/form')
+def student():
+    return render_template('student.html')
+@app.route('/result',methods = ['POST', 'GET'])
+def result():
+    if request.method == 'POST':
+        result = request.form
+        return render_template("result.html",result = result)
+    else:
+        result = request.form
+        print(result)
+        return render_template("result.html",result = result)
 
 if __name__ == '__main__':
    app.run(debug = True)
