@@ -30,7 +30,6 @@ def result():
         return render_template("result.html",result = result)
     else:
         result = request.form
-        print(result)
         return render_template("result.html",result = result)
 
 if __name__ == '__main__':
